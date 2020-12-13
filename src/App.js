@@ -1,11 +1,13 @@
 import './App.css';
-import { Button } from '@material-ui/core';
+import 'fontsource-roboto';
+import QuoteAppBar from './components/QuoteAppBar';
+import DisplayedQuote from './components/DisplayedQuote';
 
 function App() {
   return (
     <div className="App">
-      <h1> Deep Thoughts Quotes: Take 2 </h1>
-  <Button color="primary">Now with Material UI!</Button>
+      <QuoteAppBar/>
+      <DisplayedQuote/>
     </div>
   )
 }
