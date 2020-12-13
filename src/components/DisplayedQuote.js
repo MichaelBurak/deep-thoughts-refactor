@@ -19,16 +19,16 @@ export default function DisplayedQuote() {
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h2" className={classes.title} gutterBottom>
-            {/* Main Quote Text */}
+            {/* Main Quote Text to be fetched from DB */}
         “Be melting snow. Wash yourself of yourself.”
         </Typography>
         <Typography variant="h5" component="h2">
-            {/* Author Name */}
+            {/* Author Name to be fetched from DB */}
           - Rumi
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained">Copy To Clipboard</Button>
+        <Button variant="contained" color="secondary">Copy To Clipboard</Button>
       </CardActions>
     </Card>
   );

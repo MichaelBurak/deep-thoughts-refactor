@@ -21,7 +21,7 @@ export default function QuoteAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title} color="accent" >
             Deep Thoughts Quotes -- a tongue in cheek app re: aphorisms
           </Typography>
         </Toolbar>
