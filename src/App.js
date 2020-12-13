@@ -5,8 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import QuoteAppBar from './components/QuoteAppBar';
 import DisplayedQuote from './components/DisplayedQuote';
 import SubmissionFormContainer from './components/SubmissionFormContainer'
-import SecondaryButton from './components/SecondaryButton';
-import smoke from './components/smoke.jpg'
+import AuthorQuotes from './components/AuthorQuotes';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,30 +19,19 @@ const theme = createMuiTheme({
       main:'#00bcd4'
     }
   },
-
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        body: {
-          backgroundImage: `url(${smoke})`,
-        },
-      },
-    }
-  }
+  
 });
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
     <div className="App">
-      
+      <ThemeProvider theme={theme}>
       <QuoteAppBar/>
       <DisplayedQuote/>
       <SubmissionFormContainer/>
-      <SecondaryButton/>
-      
+      <AuthorQuotes/>
+      </ThemeProvider>
     </div>
-    </ThemeProvider>
   )
 }
 
