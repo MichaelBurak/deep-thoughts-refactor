@@ -2,10 +2,11 @@ import './App.css';
 import 'fontsource-roboto';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import QuoteAppBar from './components/QuoteAppBar';
-import DisplayedQuote from './components/DisplayedQuote';
-import SubmissionFormContainer from './components/SubmissionFormContainer'
-import AuthorQuotes from './components/AuthorQuotes';
+import QuoteAppBar from './components/presentational/QuoteAppBar';
+import DisplayedQuote from './components/quoteDisplays/DisplayedQuote';
+import SubmissionFormContainer from './components/forms/SubmissionFormContainer'
+import AuthorQuotes from './components/quoteDisplays/AuthorQuotes';
+import SimpleSubmission from './components/forms/SimpleSubmission';
 
 const theme = createMuiTheme({
   palette: {
@@ -28,7 +29,8 @@ function App() {
       <ThemeProvider theme={theme}>
       <QuoteAppBar/>
       <DisplayedQuote/>
-      <SubmissionFormContainer/>
+      {/* <SubmissionFormContainer/> */}
+      <SimpleSubmission/>
       <AuthorQuotes/>
       </ThemeProvider>
     </div>
