@@ -7,11 +7,21 @@
   import DialogContentText from '@material-ui/core/DialogContentText';
   import DialogTitle from '@material-ui/core/DialogTitle';
   import { useForm, Controller } from "react-hook-form";
+  import axios from 'axios'
+import api from '../../api';
 
   export default function SimpleSubmission() {
   const methods = useForm();
   const { handleSubmit, control, reset } = methods;
-  const onSubmit = data => console.log(data);
+  const onSubmit = (data) => {
+  api.postQuote( data.QuoteText, data.quoteAuthor)
+    .then((response) => {
+      debugger 
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
     const [open, setOpen] = React.useState(false);
   
     const handleClickOpen = () => {
@@ -24,17 +34,15 @@
   
     return (
       <div>
-          {/* Submit A Quote Header  */}
         <Button variant="contained" color="secondary" onClick={handleClickOpen}>
           Submit A Quote
         </Button>
+        
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 
     <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitle id="form-dialog-title">Submit A Quote with Author Attribution</DialogTitle>
-          {/* <form action="/" method="POST" onSubmit={(e) => { e.preventDefault(); debugger; alert('Submitted form!'); handleClose(); } }> */}
           <DialogContent>
-            {/* Submit A Quote Text Input Field */}
             <Controller as={TextField} name="QuoteText" control={control} defaultValue="" label="Quote Text" />
             <Controller as={TextField} name="QuoteAuthor" control={control} defaultValue="" label="Author"/>
           </DialogContent>
