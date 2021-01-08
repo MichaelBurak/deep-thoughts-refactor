@@ -5,8 +5,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import GeneratorBtn from '../buttons/GeneratorBtn'
-import api from '../../api'
+// import GeneratorBtn from '../buttons/GeneratorBtn'
+// import api from '../../api'
+import axios from 'axios'
 
 const useStyles = makeStyles({
   root: {
@@ -17,38 +18,53 @@ const useStyles = makeStyles({
 
 export default function DisplayedQuote() {
   const classes = useStyles();
-  const fetchQuote = (e) => {
+
+  // Create state variables
+  let [responseText, setResponseText] = React.useState('')
+  let [responseAuthor, setResponseAuthor] = React.useState('')
+  let [quoteButton, setQuoteButton] = React.useState(true)
+
+  
+  function fetchQuote(e){
     e.preventDefault()
-    api.getQuote().then((response)=>{
-      debugger 
-        setResponseText(response.data[0].text)
-        setResponseAuthor(response.data[0].author)
-        setQuoteButton(false)
-        console.log(response)
-    })
-    .catch((error) => {
-        console.log(error)
+
+    axios.get("http://127.0.0.1:5000/random-quote").then((response) => {
+    setResponseText(response.data.text)
+    setResponseAuthor(response.data.author)
+    setQuoteButton(false)
+    },
+    (error) =>{
+         console.log(error)
     })
   }
 
-    // Create state variables
-    let [responseText, setResponseText] = React.useState('')
-    let [responseAuthor, setResponseAuthor] = React.useState('')
-    let [quoteButton, setQuoteButton] = React.useState(true)
-
+  
+    
+  
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h2" className={classes.title} gutterBottom>
             {/* Main Quote Text to be fetched from DB */}
-        {/* “Be melting snow. Wash yourself of yourself.” */}
-        {quoteButton? <Button onClick={(e) => fetchQuote(e)} type='button'>Click Me For a Quote</Button>: <div/>}
-        {responseText} </Typography>- {responseAuthor? <Typography variant="h5" component="h2">{responseAuthor}</Typography>:<div/>}
-        
+            {/* Button displays until quote is fetched, then is not in DOM */}
+        {quoteButton? <Button onClick={(e) => fetchQuote(e)} type='button'>
+          Click Me For a Quote</Button>
+          : <div/>}
+        {responseText} 
+        </Typography>- 
+        {responseAuthor? 
+        <Typography variant="h5" component="h2">
+          {responseAuthor}
+          </Typography>
+          :<div/>}  
       </CardContent>
+
       <CardActions className={classes.root}>
-          <GeneratorBtn/>
+          {/* TBD: Prettier more functional generator button */}
+          {/* <GeneratorBtn/> */}
+
+          {/* TBD: Copying to clipboard function(in old code) */}
         <Button variant="contained" >Copy To Clipboard</Button>
       </CardActions>
     </Card>

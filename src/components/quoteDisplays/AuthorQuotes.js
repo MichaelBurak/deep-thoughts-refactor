@@ -5,6 +5,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,9 +20,38 @@ const useStyles = makeStyles((theme) => ({
 export default function AuthorQuotes() {
   const classes = useStyles();
 
+
+  const [authorQuotes, setAuthorQuotes] = React.useState('')
+
+
+  const handleChange = (panel) => (event, newExpanded) => {
+    // setAuthorQuotes(newExpanded ? panel : false);
+    axios.get('http://127.0.0.1:5000/quotes',{
+      params:{
+        author: "Rumi"
+      }
+    }).then((response)=>{
+      console.log(response)
+    })
+  };
+
+  //   function fetchQuote(e){
+  //   e.preventDefault()
+
+  //   axios.get("http://127.0.0.1:5000/random-quote").then((response) => {
+  //   setResponseText(response.data.text)
+  //   setResponseAuthor(response.data.author)
+  //   setQuoteButton(false)
+  //   },
+  //   (error) =>{
+  //        console.log(error)
+  //   })
+  // }
+
+
   return (
     <div className={classes.root}>
-      <Accordion>
+      <Accordion onChange={handleChange()}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
