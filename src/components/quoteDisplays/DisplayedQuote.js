@@ -65,7 +65,7 @@ export default function DisplayedQuote() {
           {/* <GeneratorBtn/> */}
 
           {/* TBD: Copying to clipboard function(in old code) */}
-        <Button variant="contained" >Copy To Clipboard</Button>
+        {/* <Button variant="contained" >Copy To Clipboard</Button> */}
       </CardActions>
     </Card>
   );

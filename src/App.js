@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import QuoteAppBar from './components/presentational/QuoteAppBar';
 import DisplayedQuote from './components/quoteDisplays/DisplayedQuote';
 import SubmissionFormContainer from './components/forms/SubmissionFormContainer'
-import AuthorQuotes from './components/quoteDisplays/AuthorQuotes';
+// import AuthorQuotes from './components/quoteDisplays/AuthorQuotes';
 import SimpleSubmission from './components/forms/SimpleSubmission';
 
 const theme = createMuiTheme({
@@ -31,7 +31,7 @@ function App() {
       <DisplayedQuote/>
       {/* <SubmissionFormContainer/> */}
       <SimpleSubmission/>
-      <AuthorQuotes/>
+      {/* <AuthorQuotes/> */}
       </ThemeProvider>
     </div>
   )
