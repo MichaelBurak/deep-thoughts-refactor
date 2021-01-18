@@ -28,10 +28,10 @@ export default function DisplayedQuote() {
   function fetchQuote(e){
     e.preventDefault()
 
-    axios.get("http://127.0.0.1:5000/random-quote").then((response) => {
+    axios.get("http://0.0.0.0:80/random-quote").then((response) => {
     setResponseText(response.data.text)
     setResponseAuthor(response.data.author)
-    setQuoteButton(false)
+    // setQuoteButton(false)
     },
     (error) =>{
          console.log(error)
@@ -48,10 +48,11 @@ export default function DisplayedQuote() {
         <Typography variant="h2" className={classes.title} gutterBottom>
             {/* Main Quote Text to be fetched from DB */}
             {/* Button displays until quote is fetched, then is not in DOM */}
-        {quoteButton? <Button onClick={(e) => fetchQuote(e)} type='button'>
-          Click Me For a Quote</Button>
+            {responseText} 
+        {quoteButton? <span><Button onClick={(e) => fetchQuote(e)} type='button'>
+          Click Me For a Quote</Button></span>
           : <div/>}
-        {responseText} 
+        
         </Typography>- 
         {responseAuthor? 
         <Typography variant="h5" component="h2">
